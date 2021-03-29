@@ -1,4 +1,5 @@
-#Objectives
+Lab Objectives
+-
 
 - Teach students how to do basic authentication with Rails
 - Teach students how to authorize different users to take different actions in the system

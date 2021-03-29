@@ -1,0 +1,55 @@
+<%= form_with(model: band, local: true, :html => { :multipart => true }) do |form| %>
+  <% if band.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(band.errors.count, "error") %> prohibited this band from being saved:</h2>
+
+      <ul>
+      <% band.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :band_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :band_description, :rows => 4 %>
+  </div>
+
+  <div class="field">
+    <% for genre in Genre.all  %>
+       <%= check_box_tag "band[genre_ids][]", genre.id, @band.genres.include?(genre) %>
+       <%= genre.name %>
+       <br />
+    <% end  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :playing_next %>
+    <%= form.text_field :playing_next, id: :band_playing_next %>
+  </div>
+
+  <div class="field">
+    <%= form.label :when_playing_next %>
+    <%= form.datetime_select :when_playing_next, id: :band_when_playing_next %>
+  </div>
+
+  <div class="field">
+    <%= form.label :photo %>
+    <%= form.file_field :photo, id: :band_photo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :song %>
+    <%= form.file_field :song, id: :band_song %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
